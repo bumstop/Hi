@@ -1,0 +1,31 @@
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+#test_box {
+	width: 100vw;
+	height: 100vh;
+	color: white;
+	font-size: 5vw;
+	font-weight: 700;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+.screen_0 {
+	background-color: #436ee7;
+}
+.screen_default {
+	background-color: #436ee7;
+}
+.screen_test {
+	background-color: #5aaf5e;
+}
+.screen_success {
+	background-color: #5aaf5e;
+}
+.screen_fail {
+	background-color: #f73131;
+}

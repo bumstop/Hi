@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>반응속도 테스트</title>
+		<link rel="stylesheet" href="style.css"/>
+	</head>
+	<body>
+		<div id="test_box" class="screen_0">
+			"Click to start"
+		</div>
+		<script>
+			const q = (q) => document.querySelector(q);
+			const testBox = q('#test_box');
+			const screenState = (c) => testBox.classList.contains(c);
+			let testTimeout;
+			let start;
+			let end;
+			
+			addEventListener('click', function() {
+				if(screenState('screen_test')) changeScreenSuccess();
+				else if(screenState('screen_default')) changeScreenFail();
+				else changeScreenDefault(); // 실패나 성공화면일때 else 실행
+			});
+			
+			function changeScreenDefault() {
+				testBox.setAttribute('class', 'screen_default');
+				testBox.innerHTML = '"Click when screen turns Green"';
+				testTimeout = setTimeout(changeScreenTest, 1000 + Math.random() * 5000); 
+			}
+			function changeScreenTest() {
+				start = new Date;
+				testBox.setAttribute('class', 'screen_test');
+				testBox.innerHTML = 'test screen';
+			}
+			function changeScreenSuccess() {
+				end = new Date;
+				testBox.setAttribute('class', 'screen_success');
+				testBox.innerHTML = `${end - start}ms`;
+			}
+			function changeScreenFail() {
+				testBox.setAttribute('class', 'screen_fail');
+				testBox.innerHTML = 'Oops!';
+				clearTimeout(testTimeout);
+			} 
+			
+		</script>
+	</body>
+</html>
