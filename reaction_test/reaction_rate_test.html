@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>반응속도 테스트</title>
-		<link rel="stylesheet" href="style.css"/>
+		<link rel="stylesheet" href="./style.css"/>
 	</head>
 	<body>
 		<div id="test_box" class="screen_0">
@@ -24,7 +24,7 @@
 			
 			function changeScreenDefault() {
 				testBox.setAttribute('class', 'screen_default');
-				testBox.innerHTML = '"Click when screen turns Green"';
+				testBox.innerHTML = '"Wait for Green"';
 				testTimeout = setTimeout(changeScreenTest, 1000 + Math.random() * 5000); 
 			}
 			function changeScreenTest() {
