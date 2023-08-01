@@ -16,45 +16,33 @@
 			let start;
 			let end;
 
-			function setScreenResult(attr, inner) {
-				testBox.setAttribute('class', attr);
-				testBox.innerHTML = inner;
-			}
 			addEventListener('click', function() {
 				if(screenState('screen_test')) changeScreenSuccess();
 				else if(screenState('screen_default')) changeScreenFail();
 				else changeScreenDefault(); // 실패나 성공화면일때 else 실행
 			});
-			
-			function changeScreenDefault() {
+
+			function changeScreenDefault() { // 대기화면으로 전환
 				setScreenResult('screen_default', '"Wait for Green"');
-				// testBox.setAttribute('class', 'screen_default');
-				// testBox.innerHTML = '"Wait for Green"';
 				testTimeout = setTimeout(changeScreenTest, 1000 + Math.random() * 5000); 
 			}
-			function changeScreenTest() {
+			function changeScreenTest() { // 테스트화면으로 전환
 				start = new Date;
 				setScreenResult('screen_test', 'Click!');
-				// testBox.setAttribute('class', 'screen_test');
-				// testBox.innerHTML = 'Click!';
 			}
-			function changeScreenSuccess() {
+			function changeScreenSuccess() { // 성공화면으로 전환
 				end = new Date;
 				setScreenResult('screen_success', `${end - start}ms`);
-				// testBox.setAttribute('class', 'screen_success');
-				// testBox.innerHTML = `${end - start}ms`;
 			}
-			function changeScreenFail() {
+			function changeScreenFail() { // 실패화면으로 전환
 				setScreenResult('screen_fail', 'Oops!');
-				// testBox.setAttribute('class', 'screen_fail');
-				// testBox.innerHTML = 'Oops!';
 				clearTimeout(testTimeout);
-			} 
-			
-			
+			}
 
-
-
+			function setScreenResult(attr, inner) { // 화면전환 함수의 결과값 제공
+				testBox.setAttribute('class', attr);
+				testBox.innerHTML = inner;
+			}
 		</script>
 	</body>
 </html>
