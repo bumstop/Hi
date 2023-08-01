@@ -15,7 +15,11 @@
 			let testTimeout;
 			let start;
 			let end;
-			
+
+			function setScreenResult(attr, inner) {
+				testBox.setAttribute('class', attr);
+				testBox.innerHTML = inner;
+			}
 			addEventListener('click', function() {
 				if(screenState('screen_test')) changeScreenSuccess();
 				else if(screenState('screen_default')) changeScreenFail();
@@ -23,26 +27,34 @@
 			});
 			
 			function changeScreenDefault() {
-				testBox.setAttribute('class', 'screen_default');
-				testBox.innerHTML = '"Wait for Green"';
+				setScreenResult('screen_default', '"Wait for Green"');
+				// testBox.setAttribute('class', 'screen_default');
+				// testBox.innerHTML = '"Wait for Green"';
 				testTimeout = setTimeout(changeScreenTest, 1000 + Math.random() * 5000); 
 			}
 			function changeScreenTest() {
 				start = new Date;
-				testBox.setAttribute('class', 'screen_test');
-				testBox.innerHTML = 'test screen';
+				setScreenResult('screen_test', 'Click!');
+				// testBox.setAttribute('class', 'screen_test');
+				// testBox.innerHTML = 'Click!';
 			}
 			function changeScreenSuccess() {
 				end = new Date;
-				testBox.setAttribute('class', 'screen_success');
-				testBox.innerHTML = `${end - start}ms`;
+				setScreenResult('screen_success', `${end - start}ms`);
+				// testBox.setAttribute('class', 'screen_success');
+				// testBox.innerHTML = `${end - start}ms`;
 			}
 			function changeScreenFail() {
-				testBox.setAttribute('class', 'screen_fail');
-				testBox.innerHTML = 'Oops!';
+				setScreenResult('screen_fail', 'Oops!');
+				// testBox.setAttribute('class', 'screen_fail');
+				// testBox.innerHTML = 'Oops!';
 				clearTimeout(testTimeout);
 			} 
 			
+			
+
+
+
 		</script>
 	</body>
 </html>
